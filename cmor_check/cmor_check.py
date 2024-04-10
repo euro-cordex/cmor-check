@@ -1,3 +1,5 @@
+import xarray as xr
+
 from . import log
 from .log import get_logger
 from .utils import read_json
@@ -25,3 +27,8 @@ def cmor_check(ds, cv_table=None):
             lev = log.levels[v]
             logger.log(lev, f"{k}: {v}")
     print("cmor check")
+
+
+def check_file(filename, cv_table=None):
+    ds = xr.open_dataset(filename)
+    cmor_check(ds, cv_table)
