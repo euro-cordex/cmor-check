@@ -1,0 +1,1 @@
+pytest -s -v cmor_check/tests/test_cmor.py --filename "/work/bb1203/g300046_CMOR/_CMOR/NUKLEUS/output/EUR-11/GERICS/ECMWF-ERA5/evaluation/r1i1p1f1/GERICS-REMO2020/v1/day/tas/v20240402/tas_EUR-11_ECMWF-ERA5_evaluation_r1i1p1f1_GERICS-REMO2020_v1_day_*" --cv /work/bb1203/g300046_CMOR/cmor-tables/Tables/CORDEX-CMIP6_CV.json --html=report.html --self-contained-html

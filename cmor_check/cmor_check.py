@@ -12,16 +12,15 @@ def check_cv(ds, cv_table):
     required_global_attributes = cv_table["required_global_attributes"]
     logger.info(f"required global attributes: {required_global_attributes}")
 
-    global_attrs = ds.attrs
     for attr in required_global_attributes:
-        report[attr] = global_attrs.get(attr) or "ERROR"
+        assert attr in ds.attrs
+        report[attr] = ds.attrs.get(attr) or "ERROR"
 
     return report
 
 
 def cmor_check(ds, cv_table=None):
     if cv_table:
-        cv_table = read_json(cv_table)
         report = check_cv(ds, cv_table.get("CV") or cv_table)
         for k, v in report.items():
             lev = log.levels[v]
@@ -31,4 +30,6 @@ def cmor_check(ds, cv_table=None):
 
 def check_file(filename, cv_table=None):
     ds = xr.open_dataset(filename)
+    if cv_table:
+        cv_table = read_json(cv_table)
     cmor_check(ds, cv_table)

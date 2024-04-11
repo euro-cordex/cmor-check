@@ -1,9 +1,9 @@
 import json
 
-import requests
-
 
 def read_json_url(url):
+    import requests
+
     with requests.get(url) as r:
         return r.json()
 
