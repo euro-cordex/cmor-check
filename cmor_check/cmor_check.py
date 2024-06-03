@@ -1,6 +1,5 @@
 import xarray as xr
 
-from . import log
 from .log import get_logger
 from .utils import read_json
 import numpy as np
@@ -40,21 +39,22 @@ def _check_coord(coord, ref):
 
 def check_cordex_grid(ds):
     import cordex as cx
-    
+
     domain_id = ds.cx.domain_id
     logger.info(f"Found domain_id: {domain_id}")
     dm = cx.cordex_domain(domain_id, mip_era="CMIP6", bounds=True)
-    
-    for axis in ['X', 'Y']:
-        _check_coord(ds.cf[axis], dm.cf[axis])    
 
-   
+    for axis in ["X", "Y"]:
+        _check_coord(ds.cf[axis], dm.cf[axis])
+
+
 def check_project(ds):
     if "project_id" in ds.attrs:
         project_id = ds.attrs["project_id"]
         logger.info(f"Found project_id: {project_id}")
         return "CORDEX-CMIP6"
     if "activity_id" in ds.attrs:
+        activity_id = ds.attrs["activity_id"]
         logger.info(f"Found activity_id: {activity_id}")
         return "CMIP6"
 
@@ -64,7 +64,7 @@ def cmor_check(ds, cv_table=None, project=None):
         project = check_project(ds)
     if cv_table:
         logger.info("Checking CV")
-        report = check_cv(ds, cv_table.get("CV") or cv_table)
+        check_cv(ds, cv_table.get("CV") or cv_table)
     if project == "CORDEX-CMIP6":
         check_cordex_grid(ds)
     pass
