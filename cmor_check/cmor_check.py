@@ -13,7 +13,6 @@ def check_cv(ds, cv_table):
     logger.info(f"required global attributes: {required_global_attributes}")
 
     for attr in required_global_attributes:
-        assert attr in ds.attrs
         report[attr] = ds.attrs.get(attr) or "ERROR"
 
     return report
@@ -21,11 +20,11 @@ def check_cv(ds, cv_table):
 
 def cmor_check(ds, cv_table=None):
     if cv_table:
+        logger.info("Checking CV")
         report = check_cv(ds, cv_table.get("CV") or cv_table)
         for k, v in report.items():
             lev = log.levels[v]
             logger.log(lev, f"{k}: {v}")
-    print("cmor check")
 
 
 def check_file(filename, cv_table=None):

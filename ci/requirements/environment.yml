@@ -12,6 +12,8 @@ dependencies:
   - netCDF4
   - cdo # python-cdo fails with cdo2
   - python-cdo
+  - py-cordex
+  - pooch
 # for testing
   - pytest
   - pytest-cov
