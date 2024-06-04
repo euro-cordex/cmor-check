@@ -4,7 +4,8 @@
 
 tools to check cmorized data
 
-Use either by API:
+## API
+
 ```python
 from cmor_check import cmor_check
 from cmor_check.datasets import CORDEX_CMIP6_DS
@@ -34,4 +35,16 @@ WARNING - value 'hdl:21.14103/a01f9b6f-09d0-4680-a656-63f66ce3828a' of required 
 INFO - Found domain_id: EUR-12 (cmor_check.py:46)
 INFO - Checking coordinate: rlon (cmor_check.py:35)
 INFO - Checking coordinate: rlat (cmor_check.py:35)
+```
+## Command line tool
+```bash
+cmor-check --help
+```
+gives
+```bash
+Usage: cmor-check [OPTIONS] FILENAME
+
+Options:
+  --cv TEXT  path to CV table
+  --help     Show this message and exit.
 ```
