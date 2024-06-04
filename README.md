@@ -6,6 +6,16 @@
 
 tools to check cmorized data
 
+## Installation
+
+Install in development mode:
+
+```bash
+git clone https://github.com/euro-cordex/cmor-check.git
+cd cmor-check
+pip install -e .
+```
+
 ## API
 
 Use the API to integrate seamlessly into your workflows:
