@@ -26,7 +26,9 @@ def check_cv(ds, cv_table):
                 logger.warning(message)
                 report[attr] = message
             else:
-                logger.info(f"Found value '{value}' for required global attribute '{attr}'")
+                logger.info(
+                    f"Found value '{value}' for required global attribute '{attr}'"
+                )
 
     return report
 
