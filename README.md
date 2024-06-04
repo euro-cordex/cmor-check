@@ -8,14 +8,24 @@ tools to check cmorized data
 
 ## API
 
+Use the API to integrate seamlessly into your workflows:
+
 ```python
 from cmor_check import cmor_check
 from cmor_check.datasets import CORDEX_CMIP6_DS
 from cmor_check.tables import CORDEX_CMIP6_TABLE
 
+CORDEX_CMIP6_DS
+```
+![grafik](https://github.com/euro-cordex/cmor-check/assets/5659125/eb05d8de-6988-4b43-a807-8b73b1482d02)
+
+running `cmor_check` on the example dataset:
+```python
 cmor_check(CORDEX_CMIP6_DS, CORDEX_CMIP6_TABLE("CV"))
 ```
+
 gives
+
 ```bash
 INFO - Found project_id: CORDEX (cmor_check.py:56)
 INFO - Checking CV (cmor_check.py:68)
@@ -38,11 +48,17 @@ INFO - Found domain_id: EUR-12 (cmor_check.py:46)
 INFO - Checking coordinate: rlon (cmor_check.py:35)
 INFO - Checking coordinate: rlat (cmor_check.py:35)
 ```
+
 ## Command line tool
+
+For quick checks of files, use the command line tool:
+
 ```bash
 cmor-check --help
 ```
+
 gives
+
 ```bash
 Usage: cmor-check [OPTIONS] FILENAME
 
