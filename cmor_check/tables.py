@@ -17,6 +17,6 @@ def retrieve(url):
     return filename
 
 
-def CORDEX_CMIP6(table_id):
+def CORDEX_CMIP6_TABLE(table_id):
     filename = retrieve(op.join(CORDEX_CMIP6_URL, f"CORDEX-CMIP6_{table_id}.json"))
     return read_json(filename)

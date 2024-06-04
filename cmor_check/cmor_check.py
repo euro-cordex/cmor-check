@@ -22,9 +22,11 @@ def check_cv(ds, cv_table):
             if isinstance(cv_values, dict):
                 cv_values = list(cv_values.keys())
             if value not in cv_values:
-                message = f"value {value} of required global attribute {attr} is not in CV: {cv_values}"
+                message = f"value '{value}' of required global attribute '{attr}' is not one of {cv_values}."
                 logger.warning(message)
                 report[attr] = message
+            else:
+                logger.info(f"Found value '{value}' for required global attribute '{attr}'")
 
     return report
 
