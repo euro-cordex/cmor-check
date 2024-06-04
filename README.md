@@ -3,6 +3,7 @@
 :construction: UNDER CONSTRUCTION, USE WITH CARE
 
 [![github CI](https://github.com/euro-cordex/cmor-check/actions/workflows/ci.yaml/badge.svg)](https://github.com/euro-cordex/cmor-check/actions/workflows/ci.yaml)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/euro-cordex/cmor-check/main.svg)](https://results.pre-commit.ci/latest/github/euro-cordex/cmor-check/main)
 
 tools to check cmorized data
 
