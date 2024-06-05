@@ -24,7 +24,7 @@ Right now, this tool only checks for the existence of required global attributes
 More required features are:
 
 * Evaluate regular expressions from CV and check if attribute values match, e.g., `variant_label`, etc...
-* Evaluate data variable attributes and check data for consistency (`valid_min`, `valid_max`, `units`, etc...) 
+* Evaluate data variable attributes and check data for consistency (`valid_min`, `valid_max`, `units`, etc...)
 
 ## API
 

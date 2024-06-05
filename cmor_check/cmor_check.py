@@ -42,9 +42,12 @@ def _check_coord(coord, ref):
 
 
 def check_cordex_grid(ds):
+    """Check dataset coordinates if they are close to official specifications"""
     import cordex as cx
 
     domain_id = ds.cx.domain_id
+    if not domain_id:
+        logger.warning("Checking for CORDEX grid but no domain_id found!")
     logger.info(f"Found domain_id: {domain_id}")
     dm = cx.cordex_domain(domain_id, mip_era="CMIP6", bounds=True)
 
