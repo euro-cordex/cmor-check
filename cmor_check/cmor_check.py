@@ -2,9 +2,16 @@ import xarray as xr
 
 from .log import get_logger
 from .utils import read_json
-import numpy as np
+from .checks import check_cordex_grid
+import re
 
 logger = get_logger(__name__)
+
+
+def _compare_re(pattern, string):
+    """compare two strings or regex"""
+    logger.debug(f"pattern: {pattern}, string: {string}")
+    return bool(re.fullmatch(pattern, str(string), flags=re.ASCII))
 
 
 def check_cv(ds, cv_table):
@@ -21,38 +28,26 @@ def check_cv(ds, cv_table):
             cv_values = cv_table[attr]
             if isinstance(cv_values, dict):
                 cv_values = list(cv_values.keys())
-            if value not in cv_values:
+            if isinstance(cv_values, list) and len(cv_values) == 1:
+                # only one possible outcome or pattern, might be regex
+                if not _compare_re(cv_values[0], value):
+                    message = f"value '{value}' of required global attribute '{attr}' does not match {cv_values[0]}."
+                    logger.error(message)
+                    report[attr] = message
+                    continue
+            elif value not in cv_values:
                 message = f"value '{value}' of required global attribute '{attr}' is not one of {cv_values}."
-                logger.warning(message)
+                logger.error(message)
                 report[attr] = message
-            else:
-                logger.info(
-                    f"Found value '{value}' for required global attribute '{attr}'"
-                )
+                continue
+            # came here, so it checked out
+            logger.info(
+                f"Checked value '{value}' of required global attribute '{attr}' to be consistent with CV."
+            )
+        else:
+            logger.info(f"Found value '{value}' of required global attribute '{attr}'.")
 
     return report
-
-
-def _check_coord(coord, ref):
-    logger.info(f"Checking coordinate: {coord.name}")
-    close = np.allclose(coord, ref)
-    if not close:
-        logger.warning(f"Coordinate {coord.name} has wrong values!")
-    return close
-
-
-def check_cordex_grid(ds):
-    """Check dataset coordinates if they are close to official specifications"""
-    import cordex as cx
-
-    domain_id = ds.cx.domain_id
-    if not domain_id:
-        logger.warning("Checking for CORDEX grid but no domain_id found!")
-    logger.info(f"Found domain_id: {domain_id}")
-    dm = cx.cordex_domain(domain_id, mip_era="CMIP6", bounds=True)
-
-    for axis in ["X", "Y"]:
-        _check_coord(ds.cf[axis], dm.cf[axis])
 
 
 def check_project(ds):
