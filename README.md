@@ -19,7 +19,7 @@ pip install -e .
 
 ## Roadmap
 
-Right now, this tool only checks for the existence of required global attributes according to this section in the CV file provide. Furthermore, it also checks if the values of these attributes are in the appropriate list of values from the CV. For `project_id="CORDEX"`, the tool can also check CORDEX specific requirements, e.g., check the `rlon` and `rlat` coordinates, etc...
+Right now, this tool only checks for the existence of required global attributes according to this section in the CV file provided. Furthermore, it also checks if the values of these attributes are in the appropriate list of values from the CV. For `project_id="CORDEX"`, the tool can also check CORDEX specific requirements, e.g., check the `rlon` and `rlat` coordinates, etc...
 
 More required features are:
 
