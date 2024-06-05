@@ -17,6 +17,15 @@ cd cmor-check
 pip install -e .
 ```
 
+## Roadmap
+
+Right now, this tool only checks for the existence of required global attributes according to this section in the CV file provide. Furthermore, it also checks if the values of these attributes are in the appropriate list of values from the CV. For `project_id="CORDEX"`, the tool can also check CORDEX specific requirements, e.g., check the `rlon` and `rlat` coordinates, etc...
+
+More required features are:
+
+* Evaluate regular expressions from CV and check if attribute values match, e.g., `variant_label`, etc...
+* Evaluate data variable attributes and check data for consistency (`valid_min`, `valid_max`, `units`, etc...) 
+
 ## API
 
 Use the API to integrate seamlessly into your workflows:
@@ -79,9 +88,17 @@ Options:
 ```
 For example:
 ```bash
-curl  -O -J https://raw.githubusercontent.com/euro-cordex/py-cordex-data/main/CORDEX/CMIP6/DD/EUR-12/GERICS/ERA5/evaluation/r1i1p1f1/REMO2020/v1/fx/orog/v20240529/orog_EUR-12_ERA5_evaluation_r1i1p1f1_GERICS_REMO2020_v1_fx.nc
+curl -O -J https://raw.githubusercontent.com/euro-cordex/py-cordex-data/main/CORDEX/CMIP6/DD/EUR-12/GERICS/ERA5/evaluation/r1i1p1f1/REMO2020/v1/fx/orog/v20240529/orog_EUR-12_ERA5_evaluation_r1i1p1f1_GERICS_REMO2020_v1_fx.nc
 curl -O -J https://raw.githubusercontent.com/WCRP-CORDEX/cordex-cmip6-cmor-tables/main/Tables/CORDEX-CMIP6_CV.json
 
 cmor-check --cv CORDEX-CMIP6_CV.json orog_EUR-12_ERA5_evaluation_r1i1p1f1_GERICS_REMO2020_v1_fx.nc
-````
+```
 gives the same results as above.
+
+Although this tool is developed for CORDEX-CMIP6 data, is should also be useful with any other CV and MIP, .e.g.
+```bash
+curl -O -J https://esg-dn1.nsc.liu.se/thredds/fileServer/esg_dataroot6/cmip6data/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3-Veg/historical/r1i1p1f1/Amon/tas/gr/v20211207/tas_Amon_EC-Earth3-Veg_historical_r1i1p1f1_gr_185001-185012.nc
+curl -O -J https://raw.githubusercontent.com/PCMDI/cmip6-cmor-tables/main/Tables/CMIP6_CV.json
+
+cmor-check --cv CMIP6_CV.json tas_Amon_EC-Earth3-Veg_historical_r1i1p1f1_gr_185001-185012.nc
+```
