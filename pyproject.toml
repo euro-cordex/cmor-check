@@ -30,6 +30,8 @@ dependencies = [
 ]
 dynamic = ["version"]
 
+entry-points."compliance_checker.suites"."cmor" = "cmor_check.cc_plugin:CMOR_1_Check"
+
 [project.scripts]
 cmor-check = "cmor_check.cli:check"
 
