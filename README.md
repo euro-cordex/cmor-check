@@ -23,7 +23,7 @@ Right now, this tool only checks for the existence of required global attributes
 
 More required features are:
 
-* Evaluate regular expressions from CV and check if attribute values match, e.g., `variant_label`, etc...
+* Evaluate regular expressions from CV and check if attribute values match, e.g., `variant_label`, etc... (I'm no expert in regular expression, basically have the [same questions](https://github.com/PCMDI/cmip6-cmor-tables/issues/281)) 
 * Evaluate data variable attributes and check data for consistency (`valid_min`, `valid_max`, `units`, etc...)
 
 ## API
