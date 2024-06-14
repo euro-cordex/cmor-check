@@ -3,7 +3,7 @@ import pkg_resources
 from .cmor_check import cmor_check
 
 try:
-    __version__ = pkg_resources.get_distribution("py-cordex").version
+    __version__ = pkg_resources.get_distribution("cmor-check").version
 except Exception:
     # Local copy or not installed with setuptools.
     # Disable minimum version checks on downstream libraries.
