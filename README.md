@@ -1,5 +1,7 @@
 # cmor-check
 
+:warning: Code from this project will probably moved and used in the [CC-Plugin](https://github.com/euro-cordex/cc-plugin-cc6) repository
+
 :construction: UNDER CONSTRUCTION, USE WITH CARE
 
 [![github CI](https://github.com/euro-cordex/cmor-check/actions/workflows/ci.yaml/badge.svg)](https://github.com/euro-cordex/cmor-check/actions/workflows/ci.yaml)
